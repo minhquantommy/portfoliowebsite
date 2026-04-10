@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .not-found {
+      width: 100%;
+      max-width: 520px;
+      animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .not-found-top {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .not-found-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(5rem, 18vw, 8rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: -3px;
+      position: relative;
+      display: inline-block;
+    }
+    .not-found-code::before,
+    .not-found-code::after {
+      content: '404';
+      position: absolute;
+      inset: 0;
+    }
+    .not-found-code::before {
+      color: var(--text);
+      opacity: 0.15;
+      clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+      transform: translateX(-3px);
+      animation: glitch 5s infinite;
+    }
+    .not-found-code::after {
+      color: var(--text);
+      opacity: 0.1;
+      clip-path: polygon(0 62%, 100% 62%, 100% 76%, 0 76%);
+      transform: translateX(3px);
+      animation: glitch 5s infinite 0.3s;
+    }
+    @keyframes glitch {
+      0%, 90%, 100% { opacity: 0; transform: translateX(0); }
+      92% { opacity: 1; transform: translateX(-4px); }
+      94% { opacity: 1; transform: translateX(4px); }
+      96% { opacity: 1; transform: translateX(-2px); }
+      98% { opacity: 0; }
+    }
+
+    .not-found-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-top: 8px;
+    }
+
+    /* Reuse card style from style.css */
+    .not-found-card {
+      animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.15s both;
+    }
+
+    .not-found-message {
+      font-size: 0.925rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .not-found-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .not-found-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    /* Terminal */
+    .terminal {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+    }
+    .terminal-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .terminal-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .t-line { color: var(--muted); line-height: 2; }
+    .t-prompt { color: var(--muted-dark); }
+    .t-cmd { color: var(--text); }
+    .t-err { color: var(--muted); }
+    .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 12px;
+      background: var(--text);
+      vertical-align: middle;
+      margin-left: 1px;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* Profile mini row at bottom */
+    .not-found-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+      animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+    }
+    .not-found-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .not-found-profile-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .not-found-profile-sub {
+      font-size: 0.775rem;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+  </style>
+  <script>
+    // Apply saved theme before render to avoid flash
+    if (localStorage.getItem('theme') !== 'dark') {
+      document.documentElement.classList.add('light')
+    }
+  </script>
+</head>
+<body>
+<div class="page" style="display:flex;align-items:center;justify-content:center;min-height:100vh;">
+
+  <div class="not-found" style="max-width:520px;width:100%;padding:24px;">
+
+    <div class="not-found-top">
+      <div class="not-found-code">404</div>
+      <p class="not-found-label">Page not found</p>
+    </div>
+
+    <div class="card not-found-card">
+      <p class="not-found-message">
+        This page doesn't exist or was moved. Head back to the homepage or reach out directly.
+      </p>
+
+      <div class="not-found-actions">
+        <a href="/index.html" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Go Home
+        </a>
+        <a href="mailto:nminhquan469@gmail.com" class="btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Send Email
+        </a>
+      </div>
+
+      <hr class="not-found-divider" />
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+        </div>
+        <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">GET /this-page HTTP/1.1</span></div>
+        <div class="t-line"><span class="t-err">404 Not Found</span></div>
+        <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">cd / <span class="cursor"></span></span></div>
+      </div>
+
+      <div class="not-found-profile">
+        <img class="not-found-avatar" src="assests/Ava LinkedIn.png" alt="Nguyen Minh Quan" />
+        <div>
+          <p class="not-found-profile-name">Nguyen Minh Quan</p>
+          <p class="not-found-profile-sub">Vietnamese CS Student · CyberSecurity Enthusiast</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

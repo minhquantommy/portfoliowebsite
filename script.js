@@ -95,12 +95,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle      = document.getElementById('theme-toggle')
   const spotlightEls = document.querySelectorAll('.card, .profile')
 
-  // Restore saved preference
-  if (localStorage.getItem('theme') === 'light') root.classList.add('light')
+  // Default is light mode, dark is opt-in
+  const saved = localStorage.getItem('theme')
+  if (saved === 'dark') {
+    root.classList.remove('light')
+  } else {
+    root.classList.add('light')
+  }
 
   toggle.addEventListener('click', () => {
     root.classList.toggle('light')
     localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark')
+    spotlightEls.forEach(el => { el.style.backgroundImage = '' })
     // Clear any inline backgroundImage set by the spotlight so CSS takes over immediately
     spotlightEls.forEach(el => { el.style.backgroundImage = '' })
   })
