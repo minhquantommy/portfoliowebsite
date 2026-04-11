@@ -137,20 +137,36 @@ ul { list-style: none; }
   flex-wrap: wrap;
 }
 
+.profile-avatar-wrap {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  flex-shrink: 0;
+}
+.profile-avatar-wrap:hover .profile-avatar {
+  border-color: var(--muted-dark);
+  transform: scale(1.04);
+}
 .profile-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 130px;
   height: 130px;
   border-radius: 50%;
   object-fit: cover;
   object-position: top;
   border: 2px solid var(--border);
-  flex-shrink: 0;
-  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  transition: opacity 0.4s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
 }
-.profile-avatar:hover {
-  border-color: var(--muted-dark);
-  transform: scale(1.04);
-}
+
+/* Dark mode (default): dark avatar visible, light avatar hidden */
+.avatar-dark  { opacity: 1; }
+.avatar-light { opacity: 0; }
+
+/* Light mode: light avatar visible, dark avatar hidden */
+:root.light .avatar-dark  { opacity: 0; }
+:root.light .avatar-light { opacity: 1; }
 
 .profile-info { flex: 1; min-width: 0; }
 
