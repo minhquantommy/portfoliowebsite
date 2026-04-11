@@ -27,53 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200 + i * 80)
   })
 
-  /* ── Scroll reveal for any .reveal elements ─────────── */
-  const revealEls = document.querySelectorAll('.reveal')
-  if (revealEls.length > 0) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
-          io.unobserve(entry.target)
-        }
-      })
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
-
-    revealEls.forEach(el => io.observe(el))
-  }
-
-  /* ── Smooth stat counter animation ──────────────────── */
-  const statValues = document.querySelectorAll('.stat-value')
-  const counterIO = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return
-      const el  = entry.target
-      const raw = el.textContent.trim()           // e.g. "3+", "2K+", "5+"
-      const num = parseFloat(raw)
-      const suffix = raw.replace(/[\d.]/g, '')    // "+", "K+", etc.
-
-      if (isNaN(num)) return
-      counterIO.unobserve(el)
-
-      let start = 0
-      const duration = 900
-      const startTime = performance.now()
-
-      function tick(now) {
-        const elapsed  = now - startTime
-        const progress = Math.min(elapsed / duration, 1)
-        const eased    = 1 - Math.pow(1 - progress, 3)  // ease-out cubic
-        const current  = Math.floor(eased * num)
-        el.textContent = current + suffix
-        if (progress < 1) requestAnimationFrame(tick)
-        else el.textContent = raw  // snap to original exact value
-      }
-      requestAnimationFrame(tick)
-    })
-  }, { threshold: 0.5 })
-
-  statValues.forEach(el => counterIO.observe(el))
-
   /* ── Cursor spotlight on cards ───────────────────────── */
   document.querySelectorAll('.card, .profile').forEach(card => {
     card.addEventListener('mousemove', e => {
