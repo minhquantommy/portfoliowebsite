@@ -395,7 +395,7 @@ ul { list-style: none; }
 }
 .award-entry {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
 }
 .award-entry-icon {
