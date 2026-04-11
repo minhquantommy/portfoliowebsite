@@ -385,6 +385,33 @@ ul { list-style: none; }
 .edu-degree { font-size: 0.8rem; color: var(--muted); margin-bottom: 2px; }
 .edu-period { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted-dark); }
 
+.edu-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+.award-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.award-entry-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.award-entry-title { font-size: 0.85rem; font-weight: 400; color: var(--text); margin-bottom: 2px; }
+.award-entry-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
+
 .coursework-label {
   font-size: 0.72rem;
   color: var(--muted);
